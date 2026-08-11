@@ -20,7 +20,7 @@ bash install.sh
 ## 环境要求
 
 - Android ARM64/aarch64 设备
-- 建议使用 F-Droid 或 GitHub 发布的新版 Termux
+- 支持任意可正常使用 `pkg` 和 `npm` 的 Termux，包括 Zero Termux
 - 首次安装需要网络连接
 
 ## 主要功能
@@ -48,10 +48,8 @@ claude      启动 Claude Code
 /resume     恢复历史对话
 ```
 
-## 项目与开发者
+## 相关项目
 
-- 安装脚本维护：[LaranjaPeixe](https://github.com/LaranjaPeixe)
-- 协作开发与测试：[OpenAI Codex](https://openai.com/codex/)
 - Codex 上游项目：[OpenAI Codex](https://github.com/openai/codex)
 - Codex Termux 适配：[DioNanos/codex-termux](https://github.com/DioNanos/codex-termux)，安装包 `@mmmbuto/codex-cli-termux`
 - Claude Code 上游项目：[Anthropic Claude Code](https://github.com/anthropics/claude-code)
@@ -60,3 +58,7 @@ claude      启动 Claude Code
 ## 安全说明
 
 仓库和脚本不包含任何私人端点或 API Key。你输入的配置只保存在自己的 Termux 主目录中，请勿把 `~/.codex`、`~/.claude` 或含密钥的配置文件上传到公开仓库。
+
+## 开源许可
+
+本项目采用 [MIT License](LICENSE)，任何人均可使用、修改和分发。
