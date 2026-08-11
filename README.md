@@ -1,19 +1,19 @@
-# Termux 智能体一键安装助手
+# Android Termux 智能体一键安装助手
 
-面向 Android ARM64 Termux 的 Codex 和 Claude Code 一键安装、更新与配置脚本。
+安卓手机专用，面向 Android ARM64 Termux 的 Codex 和 Claude Code 一键安装、更新与配置脚本。
 
 ## 一键运行
 
 在 Termux 中执行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/LaranjaPeixe/termux-agent-installer/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/LaranjaPeixe/android-termux-agent-installer/main/install.sh | bash
 ```
 
 如果网络不稳定或管道执行时无法正常交互，请先下载再运行：
 
 ```bash
-curl -fL https://raw.githubusercontent.com/LaranjaPeixe/termux-agent-installer/main/install.sh -o install.sh
+curl -fL https://raw.githubusercontent.com/LaranjaPeixe/android-termux-agent-installer/main/install.sh -o install.sh
 bash install.sh
 ```
 
@@ -35,6 +35,10 @@ bash install.sh
 
 安装 Codex 后可以选择 ChatGPT 官方登录、中转站或 DeepSeek。DeepSeek API Key 需要自行前往 [DeepSeek 开放平台](https://platform.deepseek.com/api_keys)申请。
 
+## DeepSeek 成功示例
+
+![安卓手机 Termux 中 Codex 成功接入 DeepSeek](docs/images/deepseek-success.webp)
+
 ## 常用命令
 
 ```text
@@ -43,6 +47,15 @@ claude      启动 Claude Code
 /model      在智能体中选择模型
 /resume     恢复历史对话
 ```
+
+## 项目与开发者
+
+- 安装脚本维护：[LaranjaPeixe](https://github.com/LaranjaPeixe)
+- 协作开发与测试：[OpenAI Codex](https://openai.com/codex/)
+- Codex 上游项目：[OpenAI Codex](https://github.com/openai/codex)
+- Codex Termux 适配：[DioNanos/codex-termux](https://github.com/DioNanos/codex-termux)，安装包 `@mmmbuto/codex-cli-termux`
+- Claude Code 上游项目：[Anthropic Claude Code](https://github.com/anthropics/claude-code)
+- Claude Code Termux 适配：[XurXuo / DamnSit](https://github.com/DamnSit/claude-code-termux)，安装包 `@xurxuo/claude-code-termux`
 
 ## 安全说明
 
