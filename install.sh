@@ -355,6 +355,17 @@ normalize_url() {
   REPLY=$url
 }
 
+normalize_claude_url() {
+  local url=${1:?}
+
+  normalize_url "$url"
+  url=$REPLY
+  if [[ "$url" =~ /[Vv]1$ ]]; then
+    url=${url%/*}
+  fi
+  REPLY=$url
+}
+
 current_codex_model() {
   local config="$HOME/.codex/config.toml"
   local model
@@ -797,10 +808,10 @@ configure_claude() {
   }
 
   while true; do
-    read_required "请输入 Claude 中转端点" || return 1
+    read_required "请输入 Claude 中转端点（若带 /v1 会自动去除）" || return 1
     endpoint=$REPLY
     if valid_url "$endpoint"; then
-      normalize_url "$endpoint"
+      normalize_claude_url "$endpoint"
       endpoint=$REPLY
       break
     fi
