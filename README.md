@@ -7,13 +7,13 @@
 在 Termux 中执行：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/LaranjaPeixe/android-termux-agent-installer/main/install.sh | bash
+curl -fsSL https://github.com/LaranjaPeixe/android-termux-agent-installer/raw/refs/heads/main/install.sh | bash
 ```
 
 如果网络不稳定或管道执行时无法正常交互，请先下载再运行：
 
 ```bash
-curl -fL https://raw.githubusercontent.com/LaranjaPeixe/android-termux-agent-installer/main/install.sh -o install.sh
+curl -fL https://github.com/LaranjaPeixe/android-termux-agent-installer/raw/refs/heads/main/install.sh -o install.sh
 bash install.sh
 ```
 
