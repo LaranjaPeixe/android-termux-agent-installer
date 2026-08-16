@@ -3,7 +3,7 @@
 set -uo pipefail
 umask 077
 
-SCRIPT_VERSION="1.3.0"
+SCRIPT_VERSION="1.3.1"
 CODEX_PACKAGE="@mmmbuto/codex-cli-termux@latest"
 CLAUDE_PACKAGE="@xurxuo/claude-code-termux@latest"
 CLAUDE_NATIVE_PACKAGE="@anthropic-ai/claude-code-linux-arm64@latest"
@@ -1202,6 +1202,6 @@ main() {
   done
 }
 
-if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+if [[ "${BASH_SOURCE[0]:-$0}" == "$0" ]]; then
   main "$@"
 fi
