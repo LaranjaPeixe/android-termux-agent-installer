@@ -3,7 +3,7 @@
 set -uo pipefail
 umask 077
 
-SCRIPT_VERSION="1.3.1"
+SCRIPT_VERSION="1.3.2"
 CODEX_PACKAGE="@mmmbuto/codex-cli-termux@latest"
 CLAUDE_PACKAGE="@xurxuo/claude-code-termux@latest"
 CLAUDE_NATIVE_PACKAGE="@anthropic-ai/claude-code-linux-arm64@latest"
@@ -144,6 +144,8 @@ preflight() {
       return 1
       ;;
   esac
+
+  initialize_termux || return 1
 }
 
 pkg_install() {
@@ -189,6 +191,45 @@ switch_termux_main_to_ustc() {
     fail "Termux 主仓库切换失败。"
     return 1
   fi
+}
+
+initialize_termux() {
+  local marker="$PREFIX/var/lib/termux-agent-installer/initialized"
+  local marker_dir
+
+  [[ -f "$marker" ]] && return 0
+  marker_dir=$(dirname "$marker")
+  if ! mkdir -p "$marker_dir"; then
+    fail "无法创建 Termux 初始化标记目录。"
+    return 1
+  fi
+
+  info "首次运行，初始化 Termux 软件包环境..."
+  if ! pkg update -y; then
+    warn "Termux 软件源刷新失败，准备自动切换中科大镜像。"
+    switch_termux_main_to_ustc || return 1
+    if ! pkg update -y; then
+      fail "切换中科大镜像后仍无法刷新软件源，请检查网络。"
+      return 1
+    fi
+  fi
+
+  if ! pkg upgrade -y; then
+    warn "Termux 基础包升级失败，切换镜像后重试。"
+    switch_termux_main_to_ustc || return 1
+    pkg update -y || return 1
+    if ! pkg upgrade -y; then
+      fail "Termux 基础包升级失败，请检查网络后重试。"
+      return 1
+    fi
+  fi
+
+  if ! : >"$marker"; then
+    fail "无法写入 Termux 初始化标记。"
+    return 1
+  fi
+  chmod 600 "$marker" 2>/dev/null || true
+  ok "Termux 软件包环境初始化完成。"
 }
 
 switch_glibc_to_direct_source() {

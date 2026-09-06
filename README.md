@@ -22,6 +22,7 @@ bash install.sh
 - Android ARM64/aarch64 设备
 - 支持任意可正常使用 `pkg` 和 `npm` 的 Termux，包括 Zero Termux
 - 首次安装需要网络连接
+- 首次运行会自动执行 `pkg update` 和 `pkg upgrade` 初始化软件包环境
 
 ## 主要功能
 
